@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import Navigator from 'navigation';
+import { Navigator } from 'navigation';
 import Notification from 'components/Notification';
 
 import 'config/ReactotronConfig';
