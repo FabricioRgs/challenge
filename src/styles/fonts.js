@@ -1,6 +1,6 @@
 export default {
-  QuicksandRegular: 'Quicksand-Regular',
-  QuicksandBold: 'Quicksand-Bold',
+  QuicksandRegular: 'Helvetica',
+  QuicksandBold: 'Helvetica',
   extreme: 26,
   bigger: 24,
   big: 20,
