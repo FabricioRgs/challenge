@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     width: metrics.screenWidth - 40,
     marginBottom: 10,
   },
-  btEntrar: {
+  btEnter: {
     backgroundColor: colors.buttons,
     height: 52,
     borderRadius: metrics.baseRadius,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: metrics.baseMargin,
   },
-  txtEntrar: {
+  txtEnter: {
     color: colors.white,
     fontFamily: fonts.QuicksandBold,
     fontSize: fonts.regular,
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginTop: 6,
   },
-  txtProvedor: {
+  txtCreate: {
     fontFamily: fonts.QuicksandRegular,
     color: colors.white,
     fontSize: fonts.small,
     textDecorationLine: 'underline',
   },
-  provedorContainer: {
+  createContainer: {
     alignItems: 'center',
     marginTop: 20,
   },

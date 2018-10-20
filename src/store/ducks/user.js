@@ -1,54 +1,48 @@
-export const Types = {
-  LOGIN_REQUEST: 'user/LOGIN_REQUEST',
-  LOGIN_SUCCESS: 'user/LOGIN_SUCCESS',
-  LOGIN_FAILURE: 'user/LOGIN_FAILURE',
-  LOGOUT: 'user/LOGOUT',
-};
+import { createActions, createReducer } from 'reduxsauce';
 
-const initialState = {
-  isLoggedIn: false,
+export const { Types, Creators } = createActions({
+  loginUserRequest: ['userData'],
+  loginUserSuccess: ['userData'],
+  loginUserFailure: ['message'],
+  createUserRequest: ['userData'],
+  createUserSuccess: ['userData'],
+  createUserFailure: ['message'],
+  logout: null,
+});
+
+const INITIAL_STATE = {
   data: [],
+  isLoggedIn: false,
+  userLogged: null,
   loading: false,
 };
 
-export default function user(state = initialState, action) {
-  switch (action.type) {
-    case Types.LOGIN_REQUEST:
-      return { ...state, loading: true };
-    case Types.LOGIN_SUCCESS:
-      return {
-        ...state, data: action.payload.userLogin, isLoggedIn: true, loading: false,
-      };
-    case Types.LOGIN_FAILURE:
-      return {
-        ...state, error: action.payload.error, isLoggedIn: false, loading: false,
-      };
-    case Types.LOGOUT:
-      return { ...state, ...initialState };
-    default:
-      return state;
-  }
-}
+const loginSuccess = (state = INITIAL_STATE, action) => ({
+  ...state,
+  userLogged: action.userData,
+  isLoggedIn: true,
+});
+const loginFailure = (state = INITIAL_STATE, action) => ({
+  ...state,
+  error: action.error,
+  isLoggedIn: false,
+});
 
-export const Creators = {
-  loginUserRequest: (userLogin, password) => ({
-    type: Types.LOGIN_REQUEST,
-    payload: { userLogin, password },
-  }),
+const createSuccess = (state = INITIAL_STATE, action) => ({
+  ...state,
+  data: [{ ...action.userData }],
+});
+const createFailure = (state = INITIAL_STATE, action) => ({
+  ...state,
+  error: action.error,
+});
 
-  loginUserSuccess: userLogin => ({
-    type: Types.LOGIN_SUCCESS,
-    payload: { userLogin },
-  }),
+const logout = (state = INITIAL_STATE) => ({ ...state, ...INITIAL_STATE });
 
-  loginUserError: (message = 'Erro ao buscar o usuário!') => ({
-    type: Types.LOGIN_FAILURE,
-    payload: {
-      message,
-    },
-  }),
-
-  logout: () => ({
-    type: Types.LOGOUT,
-  }),
-};
+export default createReducer(INITIAL_STATE, {
+  [Types.LOGIN_USER_SUCCESS]: loginSuccess,
+  [Types.LOGIN_USER_FAILURE]: loginFailure,
+  [Types.CREATE_USER_SUCCESS]: createSuccess,
+  [Types.CREATE_USER_FAILURE]: createFailure,
+  [Types.LOGOUT]: logout,
+});

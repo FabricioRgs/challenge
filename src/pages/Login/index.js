@@ -21,6 +21,8 @@ import { Creators as UserActions } from 'store/ducks/user';
 import { colors } from 'styles';
 import styles from './styles';
 
+import Modal from './components/Modal';
+
 class Login extends Component {
   static navigationOptions = {
     header: null,
@@ -34,33 +36,49 @@ class Login extends Component {
   state = {
     opacity: new Animated.Value(0),
     offset: new Animated.ValueXY({ x: 0, y: 150 }),
+    showModal: false,
     userInput: '',
     passwordInput: '',
   };
 
   async componentDidMount() {
+    const { offset, opacity } = this.state;
+
     Animated.parallel([
-      Animated.spring(this.state.offset.y, {
+      Animated.spring(offset.y, {
         toValue: 0,
         speed: 3,
         bouciness: 80,
       }),
 
-      Animated.timing(this.state.opacity, {
+      Animated.timing(opacity, {
         toValue: 1,
         duration: 1800,
       }),
     ]).start();
   }
 
+  showModal = () => {
+    this.setState({ showModal: true });
+  };
+
   render() {
+    const {
+      opacity, user, passwordInput, offset, userInput,
+    } = this.state;
+
+    const { loginUserRequest, loading } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor={colors.primaryDarker} barStyle="light-content" />
+        <Modal
+          visible={this.state.showModal}
+          onCloseModal={() => this.setState({ showModal: false })}
+        />
         <View>
-          <Animated.View style={{ opacity: this.state.opacity }}>
-            <TouchableOpacity activeOpacity={0.6} onPress={() => this.showModal()}>
-              <Text style={styles.welcome}>Telinveste</Text>
+          <Animated.View style={{ opacity }}>
+            <TouchableOpacity activeOpacity={0.6}>
+              <Text style={styles.welcome}>FotonTech</Text>
             </TouchableOpacity>
           </Animated.View>
 
@@ -73,8 +91,8 @@ class Login extends Component {
               placeholder="Seu login"
               underlineColorAndroid="transparent"
               placeholderTextColor={colors.whiteTransparent}
-              value={this.state.user}
-              onChangeText={userInput => this.setState({ userInput })}
+              value={user}
+              onChangeText={input => this.setState({ userInput: input })}
             />
           </View>
 
@@ -88,33 +106,31 @@ class Login extends Component {
               placeholder="Sua senha secreta"
               underlineColorAndroid="transparent"
               placeholderTextColor={colors.whiteTransparent}
-              value={this.state.passwordInput}
-              onChangeText={passwordInput => this.setState({ passwordInput })}
+              value={passwordInput}
+              onChangeText={input => this.setState({ passwordInput: input })}
             />
           </View>
 
           <Animated.View
             style={[
               {
-                transform: [...this.state.offset.getTranslateTransform()],
+                transform: [...offset.getTranslateTransform()],
               },
             ]}
           >
             <Button
-              onPress={() =>
-                this.props.loginUserRequest(this.state.userInput, this.state.passwordInput)
-              }
+              onPress={() => loginUserRequest(userInput, passwordInput)}
               title="Entrar"
-              loading={this.props.loading}
+              loading={loading}
             >
-              <Text style={styles.txtEntrar}> Entrar </Text>
+              <Text style={styles.txtEnter}> Entrar </Text>
             </Button>
           </Animated.View>
-          {/* <View style={styles.provedorContainer}>
+          <View style={styles.createContainer}>
             <TouchableOpacity onPress={() => this.showModal()}>
-              <Text style={styles.txtProvedor}>Alterar Provedor</Text>
+              <Text style={styles.txtCreate}>Cadastrar Usuário</Text>
             </TouchableOpacity>
-          </View> */}
+          </View>
         </View>
       </View>
     );
