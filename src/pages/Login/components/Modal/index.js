@@ -62,6 +62,7 @@ class Modal extends Component {
               placeholder="Senha"
               type="none"
               secondary
+              secureTextEntry
               value={this.state.password}
               onChangeText={(password) => {
                 this.setState({ password });

@@ -119,7 +119,7 @@ class Login extends Component {
             ]}
           >
             <Button
-              onPress={() => loginUserRequest(userInput, passwordInput)}
+              onPress={() => loginUserRequest({ login: userInput, password: passwordInput })}
               title="Entrar"
               loading={loading}
             >

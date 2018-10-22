@@ -29,7 +29,7 @@ enhancers.push(applyMiddleware(...middleware));
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'product'],
 };
 const persistedReducers = persistReducer(persistConfig, reducers);
 
