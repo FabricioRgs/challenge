@@ -64,7 +64,7 @@ class Login extends Component {
 
   render() {
     const {
-      opacity, user, passwordInput, offset, userInput,
+      opacity, passwordInput, offset, userInput,
     } = this.state;
 
     const { loginUserRequest, loading } = this.props;
@@ -91,7 +91,7 @@ class Login extends Component {
               placeholder="Seu login"
               underlineColorAndroid="transparent"
               placeholderTextColor={colors.whiteTransparent}
-              value={user}
+              value={userInput}
               onChangeText={input => this.setState({ userInput: input })}
             />
           </View>

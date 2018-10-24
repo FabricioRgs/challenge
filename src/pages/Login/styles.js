@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     backgroundColor: colors.darkTransparent,
     borderRadius: metrics.baseRadius,
-    paddingHorizontal: (metrics.basePadding * 2) + 3,
+    paddingHorizontal: metrics.basePadding * 2 + 3,
     fontSize: fonts.regular,
     width: metrics.screenWidth - 40,
     marginBottom: 10,

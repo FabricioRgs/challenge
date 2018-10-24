@@ -5,8 +5,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.light,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
   },
   header: {
     borderBottomWidth: 0,
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingVertical: 5,
     paddingBottom: 8,
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
   },
   containerLine: {
     flexDirection: 'row',
@@ -52,6 +50,35 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  searchSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.primaryDarker,
+    paddingTop: 5,
+  },
+  searchIcon: {
+    padding: 10,
+    marginLeft: 5,
+    position: 'absolute',
+    color: colors.white,
+    marginTop: 6,
+  },
+  input: {
+    fontFamily: fonts.QuicksandRegular,
+    height: 52,
+    color: colors.white,
+    backgroundColor: colors.darkTransparent,
+    borderRadius: metrics.baseRadius,
+    paddingHorizontal: metrics.basePadding * 2 + 3,
+    fontSize: fonts.regular,
+    width: metrics.screenWidth - 20,
+    marginBottom: 5,
+  },
+  scroll: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 });
 
