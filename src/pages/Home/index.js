@@ -124,7 +124,7 @@ const getProducts = createSelector(
   state => state.product.filter,
   (data, filter) => {
     if (filter) {
-      return data.filter(t => t.name.startsWith(filter));
+      return data.filter(t => t.name.toUpperCase().startsWith(filter.toUpperCase()));
     }
 
     return data;

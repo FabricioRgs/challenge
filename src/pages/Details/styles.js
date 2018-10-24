@@ -29,12 +29,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.regular,
-    fontSize: 22,
+    fontSize: 16,
+    marginBottom: 10,
   },
   textBold: {
     color: colors.dark,
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: 'bold',
+    marginRight: 5,
   },
   content: {
     padding: 20,

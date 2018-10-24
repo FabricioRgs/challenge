@@ -33,7 +33,15 @@ class Details extends Component {
         </View>
         <View style={styles.content}>
           <Text style={styles.text}>
-            <Text style={styles.textBold}>Preço R$:</Text> {price.toFixed(2).replace('.', ',')}
+            <Text style={styles.textBold}>Preço R$: </Text>
+            {price.toFixed(2).replace('.', ',')}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.textBold}>Descrição: </Text>
+            With the latest technology in app development such as React Native at your fingertips,
+            we at Foton like to tackle the most challenging projects, assuring you a reliabile,
+            lighting-fast and powerful solution, with a great User Interface and nothing short of
+            the best User Experience.
           </Text>
         </View>
       </View>
