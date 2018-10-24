@@ -6,12 +6,14 @@ import { colors } from 'styles';
 import Login from 'pages/Login';
 import Home from 'pages/Home';
 import Product from 'pages/Product';
+import Details from 'pages/Details';
 
 const Routes = createStackNavigator(
   {
     login: { screen: Login },
     home: { screen: Home },
     product: { screen: Product },
+    details: { screen: Details },
   },
   {
     navigationOptions: {

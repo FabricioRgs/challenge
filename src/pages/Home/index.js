@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { createSelector } from 'reselect';
 
 import _ from 'lodash';
 
@@ -59,6 +60,10 @@ class Home extends Component {
     searchInput: '',
   };
 
+  componentDidMount() {
+    this.props.setProductFilter('');
+  }
+
   searchProduct = (name) => {
     this.props.setProductFilter(name);
   };
@@ -68,7 +73,7 @@ class Home extends Component {
       style={styles.containerItem}
       activeOpacity={0.6}
       onPress={() => {
-        this.props.navigation.navigate('details');
+        this.props.navigation.navigate('details', { item });
       }}
     >
       <Text style={styles.txtName}>{item.name}</Text>
@@ -114,16 +119,20 @@ class Home extends Component {
   }
 }
 
-const getProducts = (todos, filter) => {
-  if (filter) {
-    return todos.filter(t => t.name.startsWith(filter));
-  }
+const getProducts = createSelector(
+  state => state.product.data,
+  state => state.product.filter,
+  (data, filter) => {
+    if (filter) {
+      return data.filter(t => t.name.startsWith(filter));
+    }
 
-  return todos;
-};
+    return data;
+  },
+);
 
 const mapStateToProps = state => ({
-  products: getProducts(state.product.data, state.product.filter),
+  products: getProducts(state),
   loading: state.product.loading,
   filter: state.product.filter,
 });
